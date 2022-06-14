@@ -48,13 +48,29 @@ class Encryptor
     shift_value
     text.downcase.chars.each_with_index.map do |char, i|
       if i % 4 == 0
-        @a_hash = Hash[@letters.zip(@letters.rotate(@shifts[:a][0]))]
+        if @shifts[:a] > 27
+          char = @letters.rotate(@shifts[:a] - 27)[i]
+        else
+          char = @letters.rotate(@shifts[:a])[i]
+        end
       elsif i % 4 == 1
-        @b_hash = Hash[@letters.zip(@letters.rotate(@shifts[:b][1]))]
+        if @shifts[:b] > 27
+          char = @letters.rotate(@shifts[:b] - 27)[i]
+        else
+          char = @letters.rotate(@shifts[:b])[i]
+        end
       elsif i % 4 == 2
-        @c_hash = Hash[@letters.zip(@letters.rotate(@shifts[:c][2]))]
+        if @shifts[:c] > 27
+          char = @letters.rotate(@shifts[:c] - 27)[i]
+        else
+          char = @letters.rotate(@shifts[:c])[i]
+        end
       elsif i % 4 == 3
-        @d_hash = Hash[@letters.zip(@letters.rotate(@shifts[:d][3]))]
+        if @shifts[:d] > 27
+          char = @letters.rotate(@shifts[:d] - 27)[0]
+        else
+          char = @letters.rotate(@shifts[:d])[0]
+        end
       end
     end
   end
