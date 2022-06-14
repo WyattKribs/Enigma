@@ -21,7 +21,8 @@ class Translator
 
   def welcome
     if !@decrypt
-      "Created #{@output} containing #{count} characters"
+      "Created #{@output} containing #{count} characters, key is
+       #{@encryptor.rand_number.join} date is #{@encryptor.offset}"
     else
       "Created #{@output} tralnslated by #{@key} and #{@encryptor.date} with #{count} characters"
     end
