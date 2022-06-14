@@ -13,18 +13,16 @@ class Translator
   end
 
   def decryption
-    if !@decrypt
+    if @decrypt ==true
       @encryptor.date = @date
     end
   end
 
-
   def welcome
-    if !@decrypt
-      "Created #{@output} containing #{count} characters, key is
-       #{@encryptor.rand_number.join} date is #{@encryptor.offset}"
+    if @decrypt == true
+      "Created #{@output} containing #{count} characters"
     else
-      "Created #{@output} tralnslated by #{@key} and #{@encryptor.date} with #{count} characters"
+      "Created #{@output} shifted by #{} and #{((Time.new).strftime("%d%m%y").to_i)} with #{count} characters"
     end
   end
 
