@@ -1,9 +1,9 @@
-require './lib/encryptor'
+require './lib/enigma'
 require 'pry'
 
-describe Encryptor do
+describe Enigma do
   before(:each) do
-    @bob = Encryptor.new(061322)
+    @bob = Enigma.new(061322)
   end
 
   it "has an array of characters" do
@@ -26,12 +26,12 @@ describe Encryptor do
   end
 
   it "can create keys" do
-    @bob.make_keys
+    @bob.make_keys("12345")
     # binding.pry
-    expect(@bob.keys[:a]).to be_a(Integer)
-    expect(@bob.keys[:b]).to be_a(Integer)
-    expect(@bob.keys[:c]).to be_a(Integer)
-    expect(@bob.keys[:d]).to be_a(Integer)
+    expect(@bob.keys[:a]).to eq(12)
+    expect(@bob.keys[:b]).to eq(23)
+    expect(@bob.keys[:c]).to eq(34)
+    expect(@bob.keys[:d]).to eq(45)
   end
 
   it "can make offset values" do
@@ -52,7 +52,12 @@ describe Encryptor do
   end
 
   it "can encrypt text" do
-    expect(@bob.shift("Hello World")) != ("hello world")
+    # binding.pry
+    expect(@bob.shift("Hello World", "12345")).to eq(
+      ["a", "i", "s", "g", "h", "d", "c", "j", "k", "p", "k"])
   end
 
+  it "can decrypt text" do
+    expect(@bob.decryption("aisghdcjkpk", "12345", "061322").join).to eq("hello world")
+  end
 end
