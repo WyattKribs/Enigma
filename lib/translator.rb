@@ -27,7 +27,7 @@ class Translator
     @encryptor.make_keys
     @encryptor.make_offsets
     @encryptor.shift_value
-    final_shift = @encryptor.shift(read_input)
+    final_shift = @encryptor.shift(read_input).join
     final_shift
   end
 
