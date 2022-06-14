@@ -42,4 +42,20 @@ class Encryptor
     @shifts[:d] = @keys[:d] + @offsets[:d]
   end
 
+  def shift(text)
+    make_keys
+    make_offsets
+    shift_value
+    text.downcase.chars.each_with_index.map do |char, i|
+      if i % 4 == 0
+        @a_hash = Hash[@letters.zip(@letters.rotate(@shifts[:a][0]))]
+      elsif i % 4 == 1
+        @b_hash = Hash[@letters.zip(@letters.rotate(@shifts[:b][1]))]
+      elsif i % 4 == 2
+        @c_hash = Hash[@letters.zip(@letters.rotate(@shifts[:c][2]))]
+      elsif i % 4 == 3
+        @d_hash = Hash[@letters.zip(@letters.rotate(@shifts[:d][3]))]
+      end
+    end
+  end
 end

@@ -51,4 +51,8 @@ describe Encryptor do
     expect(@bob.shifts[:a]).to eq(@bob.keys[:a] + @bob.offsets[:a])
   end
 
+  it "can encrypt text" do
+    expect(@bob.shift("Hello World")) != ("hello world")
+  end
+
 end
