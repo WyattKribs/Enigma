@@ -22,7 +22,7 @@ class Translator
     if @decrypt == true
       "Created #{@output} containing #{count} characters"
     else
-      "Created #{@output} shifted by #{} and #{((Time.new).strftime("%d%m%y").to_i)} with #{count} characters"
+      "Created #{@output} shifted by #{@encryptor.keys} and #{((Time.new).strftime("%d%m%y").to_i)} with #{count} characters"
     end
   end
 
